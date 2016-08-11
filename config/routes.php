@@ -27,3 +27,4 @@ $routes->get('/etusivu', function() {
 $routes->get('/lisaamuistutus', function() {
     HelloWorldController::lisaa_muistutus();
 });
+

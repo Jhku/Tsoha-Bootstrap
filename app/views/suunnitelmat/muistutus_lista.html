@@ -1,25 +1,39 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>
-            <p>Tänne tulee listaus kaikista käyttäjän muistutuksista.</p>
-            <p>Lisää muistutus painike. Josta linkki muistuksen lisäys sivulle.</p>
-           <p>Jokaisen listatun muistutuksen kohdalle painikkeet 'Muokkaa' ja 'Poista'.</p>
-          <p>Jokaista muistutusta mahdollisuus klikata jotta pääsee tarkastelemaan muistutusta tarkemmin.</p>
-            <p>Mahdollisesti useita muistutus kategorioita.</p>
-            <p>Kirjaudu ulos painike.</p>
-            
-            
-        </div>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Muistutuksesi</h1>
+</div>
+
+<p>
+    <a href="http://tsoha.github.io" class="btn btn-primary btn-lg">Uusi muistutus<span class="glyphicon glyphicon-chevron-right"></span></a>
+</p>
+
+<table class="table">
+    <thread>
+        <tr>
+            <th>Kategoria</th>
+            <th>Prioriteetti</th>
+            <th>Muistutus</th>
+            <th>Valmis?</th>
+            <th>Muokkaa?</th>
+        </tr>
+    </thread>
+
+    <tbody>
+        <!--KATO LOOP SYNTAX -->
+        <tr>
+            <td>Tähän haetaan tietokannasta tietoa!</td> 
+            <td>Tähän haetaan tietokannasta tietoa!</td>
+            <td>Tähän haetaan tietokannasta tietoa!</td>
+            <th><a class="btn" href="#">Poista</a></th>
+            <th><a class="btn" href="#">Muokkaa</a></th>
+        </tr>
+        <tr>
+            <td>Tähän haetaan tietokannasta tietoa!</td>
+            <td>Tähän haetaan tietokannasta tietoa!</td>
+            <td>Tähän haetaan tietokannasta tietoa!</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>
-            <p>Tälle sivulle tulee tarkemmat tiedot yksittäisestä muistutuksesta.</p>
-            <p>Linkit tietoihin jotka auttavat muistutuksen suorittamisessa tai johtava mahdollisiin muistutuksen materiaaleihin.</p>
-        </div>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="page-header">
+    <h1>Muistutus</h1>
+  </div>
+
+<p>
+    <a href="http://tsoha.github.io" class="btn btn-primary btn-lg">Takaisin<span class="glyphicon glyphicon-chevron-right"></span></a>
+</p>
+
+<ul>
+    <li>Kategoria tähän</li>
+    <li>Prioriteetti tähän</li>
+    <li>Lisää asioita tänne ja tietokantaan!</li>
+</ul>
+
+<p>
+    Muistutus tulee tähän
+</p>
+{% endblock %}

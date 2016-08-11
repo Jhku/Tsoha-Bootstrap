@@ -31,4 +31,5 @@
     public static function lisaa_muistutus(){
         View::make('suunnitelmat/lisaa_muistutus.html');
     }
+    
   }
