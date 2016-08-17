@@ -8,14 +8,6 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
-$routes->get('/muistutuslista', function() {
-    HelloWorldController::muistutus_lista();
-});
-
-$routes->get('/avaamuistutus', function() {
-    HelloWorldController::muistutus();
-});
-
 $routes->get('/muokkaa', function() {
     HelloWorldController::muistutus_muokkaus();
 });
@@ -24,7 +16,24 @@ $routes->get('/etusivu', function() {
     HelloWorldController::etusivu();
 });
 
-$routes->get('/lisaamuistutus', function() {
-    HelloWorldController::lisaa_muistutus();
+
+$routes->post('/muistutus', function() {
+    MuistutusKontrolleri::lisaa_muistutus();
 });
+
+$routes->get('/muistutus/uusi', function() {
+   MuistutusKontrolleri::luo_muistutus();
+});
+
+//huom ei viittaa oikeasti tietokannassa olevaan $mid
+$routes->get('/muistutus/:mid', function($mid) {
+    MuistutusKontrolleri::muistutus($mid);
+});
+
+
+$routes->get('/muistutuslista', function() {
+    MuistutusKontrolleri::index();
+});
+
+
 

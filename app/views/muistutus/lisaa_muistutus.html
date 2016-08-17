@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Lisää</h1>
+</div>
+
+
+<form method="post" action="{{base_path}}/muistutus">
+    <div class="form group">
+        <button type="submit" class="btn btn-primary btn-lg">Tallenna</button>
+    </div>
+
+
+    <div class="form group">
+        <label>Kategoria</label>
+        <input name="kategoria" class="form-control" value="Muistutuksen kenttiä muokataan täällä!" type="text">
+    </div>
+    <div class="form group">
+        <label>Prioriteetti</label>
+        <input name="prioriteetti" class="form-control" value="Muistutuksen kenttiä muokataan täällä!" type="text">
+    </div>
+
+    <div class="form group">
+        <label>Muistutus</label>
+        <textarea name="muistutus" class="form-control"></textarea>
+    </div>
+
+
+</form>
+{% endblock %}

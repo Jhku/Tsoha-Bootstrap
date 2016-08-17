@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Muistutuksesi</h1>
+</div>
+
+<p>
+    <a href="http://tsoha.github.io" class="btn btn-primary btn-lg">Uusi muistutus<span class="glyphicon glyphicon-chevron-right"></span></a>
+</p>
+
+<table class="table">
+    <thread>
+        <tr>
+            <th>Prioriteetti</th>
+            <th>Kategoria</th>
+            <th>Muistutus</th>
+            <th>Valmis?</th>
+            <th>Muokkaa?</th>
+        </tr>
+    </thread>
+
+    <tbody>
+        <!--KATO LOOP SYNTAX -->
+        {% for muistutus in muistutukset %}
+        <tr>
+            <td>{{muistutus.prioriteetti}}</td> 
+            <td>{{muistutus.kategoria}}</td>
+            <td>{{muistutus.muistutus}}</td>
+
+            <th><a class="btn" href="#">Poista</a></th>
+            <th><a class="btn" href="#">Muokkaa</a></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
