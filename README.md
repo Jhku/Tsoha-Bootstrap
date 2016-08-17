@@ -10,6 +10,10 @@ Yleisiä linkkejä:
 * [Linkki avaa muistutus suunnitelmaani](http://haxjohan.users.cs.helsinki.fi/tsoha/avaamuistutus)
 * [Linkki lisää muistutus suunnitelmaani](http://haxjohan.users.cs.helsinki.fi/tsoha/lisaamuistutus)
 
+* [Linkki muistutuslistaukseen](http://haxjohan.users.cs.helsinki.fi/tsoha/muistutuslista)
+* [Linkki ensimmäiseen muistutus index](http://haxjohan.users.cs.helsinki.fi/tsoha/muistutus/1)
+* [Linkki muistutuksen lisäämiseen](http://haxjohan.users.cs.helsinki.fi/tsoha/muistutus/uusi)
+
 ## Työn aihe
 
 Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Muistilista.html) 
