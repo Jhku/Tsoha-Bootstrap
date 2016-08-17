@@ -2,6 +2,7 @@
 
 Yleisiä linkkejä:
 
+Viikko 2:
 * [Linkki sovellukseeni](http://haxjohan.users.cs.helsinki.fi/tsoha/)
 * [Linkki dokumentaatiooni](https://github.com/Jhku/Tsoha-Bootstrap/tree/master/doc)
 * [Linkki etusivu suunnitelmaani](http://haxjohan.users.cs.helsinki.fi/tsoha/etusivu)
@@ -10,6 +11,7 @@ Yleisiä linkkejä:
 * [Linkki avaa muistutus suunnitelmaani](http://haxjohan.users.cs.helsinki.fi/tsoha/avaamuistutus)
 * [Linkki lisää muistutus suunnitelmaani](http://haxjohan.users.cs.helsinki.fi/tsoha/lisaamuistutus)
 
+Viikko 3:
 * [Linkki muistutuslistaukseen](http://haxjohan.users.cs.helsinki.fi/tsoha/muistutuslista)
 * [Linkki ensimmäiseen muistutus index](http://haxjohan.users.cs.helsinki.fi/tsoha/muistutus/1)
 * [Linkki muistutuksen lisäämiseen](http://haxjohan.users.cs.helsinki.fi/tsoha/muistutus/uusi)
