@@ -11,22 +11,8 @@ class HelloWorldController extends BaseController {
     public static function sandbox() {
         // Testaa koodiasi täällä
         $muistutukset = Muistutus::kaikkiMuistutukset();
-        $haku2 = Muistutus::haeMuistutus(1);
-        
-        $tehtava = new Muistutus(array(
-            'kategoria' => 'Kiireeton',
-            'prioriteetti' => '4',
-            'muistutus' => 'testi123'
-        ));
 
-        
-        $lisays = Muistutus::lisaaMuistutus($tehtava);
-        
-        $haku3 = Muistutus::kaikkiMuistutukset();
-
-        Kint::dump($haku2);
         Kint::dump($muistutukset);
-        Kint::dump($haku3);
     }
 
     public static function muistutus_lista() {

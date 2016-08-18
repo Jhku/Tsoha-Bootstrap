@@ -42,14 +42,20 @@ class Muistutus extends BaseModel {
                 'prioriteetti' => $tulos['prioriteetti'],
                 'muistutus' => $tulos['muistutus']
             ));
+            
+            return $muistutus;
         }
         
-        return $muistutus;
+        return null;
     }
     
-    public static function lisaaMuistutus($muistutus){
-        $kysely = DB::connection()->prepare('INSERT INTO Muistutus (kategoria, prioriteetti, muistutus) VALUES (:kategoria, :prioriteetti, :muistutus)');
-        $kysely->execute(array('kategoria' => $muistutus->kategoria, 'prioriteetti' => $muistutus->prioriteetti, 'muistutus' => $muistutus->muistutus));
+    public function lisaaMuistutus(){
+        $kysely = DB::connection()->prepare('INSERT INTO Muistutus (kategoria, prioriteetti, muistutus) VALUES (:kategoria, :prioriteetti, :muistutus) RETURNING mid');
+        $kysely->execute(array('kategoria' => $this->kategoria, 'prioriteetti' => $this->prioriteetti, 'muistutus' => $this->muistutus));
+        
+        $rivi = $kysely->fetch();
+        
+        $this->mid = $rivi['mid'];
         
     }
 

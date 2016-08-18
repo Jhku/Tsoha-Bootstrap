@@ -23,7 +23,7 @@ class MuistutusKontrolleri extends BaseController {
             'muistutus' => $params['muistutus']
         ));
         
-        Muistutus::lisaaMuistutus($muistutus);
+        $muistutus->lisaaMuistutus();
         
         //TÄMÄ EI TOIMI, ei saada tietokantaan lisätyn muistutuksen mid viellä tässä vaiheessa
         Redirect::to('/muistutus/' . $muistutus->mid, array('viesti' =>  'Muistutus lisätty!'));
