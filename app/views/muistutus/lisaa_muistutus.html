@@ -8,17 +8,23 @@
 
 <form method="post" action="{{base_path}}/muistutus">
     <div class="form group">
-        <button type="submit" class="btn btn-primary btn-lg">Tallenna</button>
+        <a href="{{base_path}}/muistutuslista" class="btn btn-default btn-lg">Listaan<span class="glyphicon glyphicon-chevron-right"></span></a>
+        <button type="submit" class="btn btn-success btn-lg">Tallenna</button>
     </div>
 
+    <div class="form group">
+        <label>Prioriteetti</label>
+        <input name="prioriteetti" class="form-control" value="Numero 1-5" type="text">
+    </div>
 
     <div class="form group">
         <label>Kategoria</label>
-        <input name="kategoria" class="form-control" value="Muistutuksen kenttiä muokataan täällä!" type="text">
+        <input name="kategoria" class="form-control" value="" type="text">
     </div>
+
     <div class="form group">
-        <label>Prioriteetti</label>
-        <input name="prioriteetti" class="form-control" value="Muistutuksen kenttiä muokataan täällä!" type="text">
+        <label>Info</label>
+        <input name="info" class="form-control" value="" type="text">
     </div>
 
     <div class="form group">

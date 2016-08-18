@@ -6,16 +6,30 @@
 </div>
 
 <p>
-    <a href="http://tsoha.github.io" class="btn btn-primary btn-lg">Takaisin<span class="glyphicon glyphicon-chevron-right"></span></a>
+    <!-- MUOKKAA JA POISTA TOIMINNOT PUUTTUVAT -->
+    <a href="{{base_path}}/muistutuslista" class="btn btn-default btn-lg">Listaan<span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a href="http://tsoha.github.io" class="btn btn-info btn-lg">Muokkaa<span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a href="{{base_path}}/muistutuslista" class="btn btn-danger btn-lg">Poista<span class="glyphicon glyphicon-chevron-right"></span></a>
 </p>
 
 <ul>
-    <li>{{muistutus.kategoria}}</li>
     <li>{{muistutus.prioriteetti}}</li>
-    <li>Lisää asioita tänne ja tietokantaan!</li>
+    <li>{{muistutus.kategoria}}</li>
+    <li>{{muistutus.info}}</li>
+
+    {% if muistutus.suoritettu %}
+    <li>Valmis</li>
+    {% else %}
+    <li>Kesken</li>
+    {% endif %}
+
+
 </ul>
 
 <p>
     {{muistutus.muistutus}}
 </p>
+
+<!-- LISÄÄ LINKIT TÄNNE? -->
+
 {% endblock %}

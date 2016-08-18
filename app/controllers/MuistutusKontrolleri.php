@@ -17,15 +17,16 @@ class MuistutusKontrolleri extends BaseController {
     public static function lisaa_muistutus() {
         $params = $_POST;
 
+        //HUOM SUORITETTU ASETETAAN DEFAULT FALSE
         $muistutus = new Muistutus(array(
             'kategoria' => $params['kategoria'],
             'prioriteetti' => $params['prioriteetti'],
+            'info' => $params['info'],
             'muistutus' => $params['muistutus']
         ));
         
         $muistutus->lisaaMuistutus();
-        
-        //TÄMÄ EI TOIMI, ei saada tietokantaan lisätyn muistutuksen mid viellä tässä vaiheessa
+
         Redirect::to('/muistutus/' . $muistutus->mid, array('viesti' =>  'Muistutus lisätty!'));
     }
     

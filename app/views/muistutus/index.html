@@ -6,7 +6,7 @@
 </div>
 
 <p>
-    <a href="http://tsoha.github.io" class="btn btn-primary btn-lg">Uusi muistutus<span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a href="{{base_path}}/muistutus/uusi" class="btn btn-primary btn-lg">Uusi muistutus<span class="glyphicon glyphicon-chevron-right"></span></a>
 </p>
 
 <table class="table">
@@ -14,22 +14,31 @@
         <tr>
             <th>Prioriteetti</th>
             <th>Kategoria</th>
-            <th>Muistutus</th>
+            <th>Info</th>
             <th>Valmis?</th>
-            <th>Muokkaa?</th>
+            <th>Avaa</th>
+            <th>Muokkaa</th>
+            <th>Poista</th>
         </tr>
     </thread>
 
     <tbody>
-        <!--KATO LOOP SYNTAX -->
         {% for muistutus in muistutukset %}
         <tr>
             <td>{{muistutus.prioriteetti}}</td> 
             <td>{{muistutus.kategoria}}</td>
-            <td>{{muistutus.muistutus}}</td>
+            <td>{{muistutus.info}}</td>
 
-            <th><a class="btn" href="#">Poista</a></th>
-            <th><a class="btn" href="#">Muokkaa</a></th>
+            {% if muistutus.suoritettu %}
+            <td><label class="label label-success">Kyllä</td>
+            {% else %}
+            <td><label class="label label-danger">Ei</td>
+            {% endif %}
+
+            <!--LISÄÄ LINKIT JOHTAMAAN OIKEISIIN INDEXEIHIN -->
+            <th><a class="btn btn-success" href="{{base_path}}/muistutus/{{muistutus.mid}}">Avaa</a></th>
+            <th><a class="btn btn-info" href="#">Muokkaa</a></th>
+            <th><a class="btn btn-danger" href="#">Poista</a></th>
         </tr>
         {% endfor %}
     </tbody>

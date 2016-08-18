@@ -9,14 +9,16 @@ Create Table Kayttaja(
 Create Table Muistutus(
 	MID SERIAL PRIMARY KEY,
 	kayttaja INTEGER REFERENCES Kayttaja(KID),
-	Kategoria varchar(50),
-	Prioriteetti INTEGER,
-	Muistutus varchar(200) NOT NULL 	
+	Kategoria varchar(25),
+	Prioriteetti INTEGER DEFAULT 5 CHECK (6 > Prioriteetti AND Prioriteetti > 0),
+	Info varchar(35),
+	Suoritettu boolean DEFAULT FALSE,
+	Muistutus varchar(500)	
 );
 
 Create Table Linkki(
 	LID SERIAL PRIMARY KEY,
 	muistutus INTEGER REFERENCES Muistutus(MID),
 	Aihe varchar(50),
-	Osoite varchar(100)
+	Osoite varchar(100) NOT NULL
 );

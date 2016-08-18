@@ -25,7 +25,6 @@ $routes->get('/muistutus/uusi', function() {
    MuistutusKontrolleri::luo_muistutus();
 });
 
-//huom ei viittaa oikeasti tietokannassa olevaan $mid
 $routes->get('/muistutus/:mid', function($mid) {
     MuistutusKontrolleri::muistutus($mid);
 });

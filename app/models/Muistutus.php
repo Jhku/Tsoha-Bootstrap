@@ -2,7 +2,7 @@
 
 class Muistutus extends BaseModel {
 
-    public $mid, $kayttaja, $kategoria, $prioriteetti, $muistutus;
+    public $mid, $kayttaja, $kategoria, $prioriteetti, $info, $suoritettu, $muistutus;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -21,6 +21,8 @@ class Muistutus extends BaseModel {
                 'kayttaja' => $tulos['kayttaja'],
                 'kategoria' => $tulos['kategoria'],
                 'prioriteetti' => $tulos['prioriteetti'],
+                'info' => $tulos['info'],
+                'suoritettu' => $tulos['suoritettu'],
                 'muistutus' => $tulos['muistutus']
             ));
         }
@@ -40,6 +42,8 @@ class Muistutus extends BaseModel {
                 'kayttaja' => $tulos['kayttaja'],
                 'kategoria' => $tulos['kategoria'],
                 'prioriteetti' => $tulos['prioriteetti'],
+                'info' => $tulos['info'],
+                'suoritettu' => $tulos['suoritettu'],
                 'muistutus' => $tulos['muistutus']
             ));
             
@@ -50,8 +54,10 @@ class Muistutus extends BaseModel {
     }
     
     public function lisaaMuistutus(){
-        $kysely = DB::connection()->prepare('INSERT INTO Muistutus (kategoria, prioriteetti, muistutus) VALUES (:kategoria, :prioriteetti, :muistutus) RETURNING mid');
-        $kysely->execute(array('kategoria' => $this->kategoria, 'prioriteetti' => $this->prioriteetti, 'muistutus' => $this->muistutus));
+        $kysely = DB::connection()->prepare('INSERT INTO Muistutus (kategoria, prioriteetti, info, muistutus) VALUES (:kategoria, :prioriteetti, :info, :muistutus) RETURNING mid');
+        $kysely->execute(array('kategoria' => $this->kategoria, 'prioriteetti' => $this->prioriteetti, 'info' => $this->info, 'muistutus' => $this->muistutus));
+        
+        //lisää suoritettu boolean arvon lisäys kyselyyn toimivalla tavalla
         
         $rivi = $kysely->fetch();
         
