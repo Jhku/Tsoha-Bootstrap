@@ -20,9 +20,11 @@
     {% endblock %}
   </head>
 
-  <body>
+  <!--Täältä muokataan kokosivun värejä-->
+  <body id="dark-theme">
 
-    <nav class="navbar navbar-default" role="navigation">
+      <!--Täällä muokataan navigointi palkin värejä-->
+      <nav class="navbar navbar-default" role="navigation" id="black-theme">
       <div class="container-fluid">
 
         <div class="navbar-header">
@@ -33,7 +35,7 @@
             <span class="icon-bar"></span>
           </button>
           <!-- Sovelluksen nimi -->
-          <a class="navbar-brand" href="{{base_path}}">Tsoha Bootstrap</a>
+          <a class="navbar-brand" href="{{base_path}}">Muistilista</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
@@ -44,7 +46,9 @@
         </div>
       </div>
     </nav>
+      
 
+      
     <div id="main-container">
       <!-- Dynaaminen sisältö tulee tähän -->
       {% block content %}{% endblock %}

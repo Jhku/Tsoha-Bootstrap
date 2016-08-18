@@ -6,7 +6,7 @@
 </div>
 
 <p>
-    <a href="{{base_path}}/muistutus/uusi" class="btn btn-primary btn-lg">Uusi muistutus<span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a href="{{base_path}}/muistutus/uusi" class="btn custom-button">Uusi muistutus<span class="glyphicon glyphicon-chevron-right"></span></a>
 </p>
 
 <table class="table">
@@ -36,9 +36,9 @@
             {% endif %}
 
             <!--LISÄÄ LINKIT JOHTAMAAN OIKEISIIN INDEXEIHIN -->
-            <th><a class="btn btn-success" href="{{base_path}}/muistutus/{{muistutus.mid}}">Avaa</a></th>
-            <th><a class="btn btn-info" href="#">Muokkaa</a></th>
-            <th><a class="btn btn-danger" href="#">Poista</a></th>
+            <th><a class="btn custom-button" href="{{base_path}}/muistutus/{{muistutus.mid}}">Avaa</a></th>
+            <th><a class="btn custom-button" href="#">Muokkaa</a></th>
+            <th><a class="btn custom-button" href="#">Poista</a></th>
         </tr>
         {% endfor %}
     </tbody>

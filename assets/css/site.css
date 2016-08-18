@@ -1,10 +1,27 @@
 #main-container{
-  max-width: 1200px;
-  padding: 10px 25px;
-  margin: 0px auto;
+    max-width: 1200px;
+    padding: 10px 25px;
+    margin: 0px auto;
 }
 
 .navbar .container-fluid{
-  max-width: 1200px;
-  margin: 0px auto;
+    max-width: 1200px;
+    margin: 0px auto;
+}
+
+#dark-theme{
+    background-color: #101010;
+    color: #bdbdbd;
+}
+
+#black-theme{
+    background-color: #000; 
+    border-color: #000;
+}
+
+.custom-button{
+    background-color: #000;
+    border-color: #101010;
+    text-decoration-color: #bdbdbd;
+    border-radius: 24px;
 }
