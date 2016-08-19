@@ -10,7 +10,7 @@
 }
 
 #dark-theme{
-    background-color: #101010;
+    background-color: #222;
     color: #bdbdbd;
 }
 
@@ -21,7 +21,7 @@
 
 .custom-button{
     background-color: #000;
-    border-color: #101010;
+    border-color: #000;
     text-decoration-color: #bdbdbd;
     border-radius: 24px;
 }
