@@ -5,8 +5,8 @@ Yleisiä linkkejä:
 * [Linkki sovellukseeni](http://haxjohan.users.cs.helsinki.fi/tsoha/)
 * [Linkki dokumentaatiooni](https://github.com/Jhku/Tsoha-Bootstrap/tree/master/doc)
 
-Käyttäjätunnus: admin
-Salasana: 123
+* Käyttäjätunnus: admin
+* Salasana: 123
 
 ## Työn aihe
 
