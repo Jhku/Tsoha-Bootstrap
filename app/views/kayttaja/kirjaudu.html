@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "macros/forms.html" as macro %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Kirjaudu sisään</h1>
+</div>
+
+{% if error %}
+<p>{{error}}</p>
+{% endif %}
+
+<form method="post" action="{{base_path}}/kirjaudu">
+    <div>
+        <a href="{{base_path}}/etusivu" class="btn custom-button">Takaisin</a>
+        <button type="submit" class="btn custom-button">Kirjaudu</button>
+    </div>
+
+    <p></p>
+
+    <div class="form group">
+        <label>Käyttäjä</label>
+        <input name="nimi" class="form-control" type="text" id="dark-form">
+    </div>
+
+    <div class="form group">
+        <label>Salasana</label>
+        <input name="salasana" class="form-control" type="password" id="dark-form">
+    </div>
+</form>
+{% endblock %}

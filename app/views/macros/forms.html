@@ -1,0 +1,55 @@
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        {% macro esimerkki_makro() %}
+        <!-- Tänne tulee HTML koodia -->
+        {% endmacro %}
+
+
+        {% macro tekstirivi(name, value, label) %}
+        <div>
+            <label>{{label}}</label>
+            <input name="{{name}}" class="form-control" value="{{value}}" type="text" id="dark-form">
+        </div>
+        {% endmacro %}
+
+        <!-- 
+        <form method="post" action="{{base_path}}/muistutus">
+        <div class="form group">
+        <label>Kategoria</label>
+        <input name="kategoria" class="form-control" value="{{atribuutit.kategoria}}" type="text" id="dark-form">
+        </div>
+        </form>
+        -->
+
+        {% macro tekstikentta(name, value, label) %}
+        <div>
+            <label>{{label}}</label>
+            <textarea name="{{name}}" class="form-control" id="dark-form">{{value}}</textarea>
+        </div>
+        {% endmacro %}
+
+        <!--
+        -->
+
+        {% macro tallenna_nappi() %}
+        <button type="submit" class="btn custom-button">Tallenna</button>
+        {% endmacro %}
+
+        <!-- HUOM MOLEMPIIN NAPPEIHIN TARVITAAN YMPÄRILLE
+        <form method="post" action="{{base_path}}/muistutus">
+        </form>
+        -->
+
+        {% macro poista_nappi() %}
+        <button type="submit" class="btn custom-button">Poista</button>
+        {% endmacro %}
+
+    </body>
+</html>

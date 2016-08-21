@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/forms.html" as macro %}
 
 {% block content %}
 <div class="page-header">
@@ -37,8 +38,13 @@
 
             <!--LISÄÄ LINKIT JOHTAMAAN OIKEISIIN INDEXEIHIN -->
             <th><a class="btn custom-button" href="{{base_path}}/muistutus/{{muistutus.mid}}">Avaa</a></th>
-            <th><a class="btn custom-button" href="#">Muokkaa</a></th>
-            <th><a class="btn custom-button" href="#">Poista</a></th>
+            <th><a class="btn custom-button" href="{{base_path}}/muistutus/{{muistutus.mid}}/muokkaa">Muokkaa</a></th>
+
+            <td>
+                <form method="post" action="{{base_path}}/muistutus/{{muistutus.mid}}/poista">
+                    {{macro.poista_nappi()}}
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

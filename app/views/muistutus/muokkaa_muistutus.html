@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="page-header">
-    <h1>Lisää</h1>
+    <h1>Muokkaa</h1>
 </div>
 
 {% if errors %}
@@ -16,37 +16,22 @@
 </div>
 
 {% endif %}
-
-
-
-
-<form method="post" action="{{base_path}}/muistutus">
+<form method="post" action="{{base_path}}/muistutus/{{atribuutit.mid}}/muokkaa">
 
     <a href="{{base_path}}/muistutuslista" class="btn custom-button">Listaan</a>
     {{macro.tallenna_nappi()}}
     <p></p>
-
 
     <div class="form group">
         <label>Prioriteetti</label>
         <input type="number" name="prioriteetti" min="1" max="5" id="dark-form" style="border-radius: 12px; width: 50px" value="{{atribuutit.prioriteetti}}">
     </div>
 
-    <div class="form group">
-        <label>Kategoria</label>
-        <input name="kategoria" class="form-control" value="{{atribuutit.kategoria}}" type="text" id="dark-form">
-    </div>
-
-    <div class="form group">
-        <label>Info</label>
-        <input name="info" class="form-control" value="{{atribuutit.info}}" type="text" id="dark-form">
-    </div>
-
-    <div class="form group">
-        <label>Muistutus</label>
-        <textarea name="muistutus" class="form-control" id="dark-form">{{atribuutit.muistutus}}</textarea>
-    </div>
-
-
+    {{macro.tekstirivi("#{'kategoria'}", "#{atribuutit.kategoria}", "#{'Kategoria'}")}}
+    {{macro.tekstirivi("#{'info'}", "#{atribuutit.info}", "#{'Info'}")}}
+    {{macro.tekstikentta("#{'muistutus'}", "#{atribuutit.muistutus}", "#{'Muistutus'}")}}
 </form>
+
+
+
 {% endblock %}

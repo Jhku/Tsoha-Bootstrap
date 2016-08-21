@@ -1,18 +1,33 @@
 <?php
 
-
 class HelloWorldController extends BaseController {
 
     public static function index() {
         // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-        echo 'Tämä on etusivu!';
+        View::make('home.html');
     }
 
     public static function sandbox() {
         // Testaa koodiasi täällä
-        $muistutukset = Muistutus::kaikkiMuistutukset();
+        $muistutus = new Muistutus(array(
+            'kategoria' => 'nullasd',
+            'muistutus' => '45912',
+            'prioriteetti' => 5
+        ));
 
-        Kint::dump($muistutukset);
+        $errors = $muistutus->errors();
+        $tyhja = array();
+        
+        if(count($tyhja) == 0){
+            Kint::dump('Tyhjä lasketaan nollaksi');
+        }
+        
+        if(count($errors) == 0){
+            Kint::dump('HOMMA TOIMII!');
+        }
+        Kint::dump($errors);
+        Kint::dump($tyhja);
+
     }
 
     public static function muistutus_lista() {
@@ -25,10 +40,6 @@ class HelloWorldController extends BaseController {
 
     public static function muistutus_muokkaus() {
         View::make('suunnitelmat/muistutus_muokkaus.html');
-    }
-
-    public static function etusivu() {
-        View::make('suunnitelmat/etusivu.html');
     }
 
     public static function lisaa_muistutus() {
