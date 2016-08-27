@@ -1,16 +1,26 @@
 {% extends "base.html" %}
+{% import "macros/forms.html" as macro %}
 
 {% block content %}
-  <div class="page-header">
+<div class="page-header">
     <h1>Muistilista</h1>
-  </div>
+</div>
 
-  <p>
-    <a href="{{base_path}}/kirjaudu" class="btn custom-button">Kirjaudu</a>
-  </p>
-  
-  <p>
-      Tervetuloa muistilista sovellukseen!
-      
-  </p>
+{% if user_logged_in %}
+<p>
+    {{macro.linkki_nappi("#{base_path}/muistutuslista", "Listaan")}}
+</p>
+{% else %}
+<p>
+    {{macro.linkki_nappi("#{base_path}/kirjaudu", "Kirjaudu")}}
+</p>
+{% endif %}
+
+<div>
+    Tervetuloa muistilista sovellukseen!
+</div>
+
+<div>
+ <img src="https://media.giphy.com/media/FHCHRtwAZgGFq/giphy.gif" alt="HTML5 Icon" style="width:480px;height:475px;"> 
+</div>
 {% endblock %}

@@ -9,9 +9,10 @@ class MuistutusKontrolleri extends BaseController {
     }
 
     public static function muistutus($mid) {
-        $muistutus = Muistutus::haeMuistutus($mid, $_SESSION['kayttaja']);
+        $muistutus = Muistutus::haeMuistutus($mid);
+        $linkit = Linkki::kaikkiLinkit($mid);
 
-        View::make('muistutus/muistutus.html', array('muistutus' => $muistutus));
+        View::make('muistutus/muistutus.html', array('muistutus' => $muistutus, 'linkit' => $linkit));
     }
 
     public static function lisaa_muistutus_nakyma() {
@@ -43,7 +44,7 @@ class MuistutusKontrolleri extends BaseController {
     }
 
     public static function muokkaa_muistutus_nakyma($mid) {
-        $atribuutit = Muistutus::haeMuistutus($mid, $_SESSION['kayttaja']);
+        $atribuutit = Muistutus::haeMuistutus($mid);
         View::make('muistutus/muokkaa_muistutus.html', array('atribuutit' => $atribuutit));
     }
 
@@ -57,25 +58,30 @@ class MuistutusKontrolleri extends BaseController {
             'info' => $params['info'],
             'muistutus' => $params['muistutus'],
         );
-        
+
         $muistutus = new Muistutus($atribuutit);
         $virheet = $muistutus->errors();
-        
-        if (count($virheet) == 0){
-            $muistutus->muokkaaMuistutus($mid, $_SESSION['kayttaja']);
+
+        if (count($virheet) == 0) {
+            $muistutus->muokkaaMuistutus($muistutus->mid);
             Redirect::to('/muistutus/' . $muistutus->mid, array('viesti' => 'Muokkaus suoritettu!'));
         } else {
-            View::make('muistutus/' . $muistutus->mid . '/muokkaa', array('errors' => $virheet, 'atribuutit' => $atribuutit));
+            Redirect::to('/muistutus/' . $muistutus->mid . '/muokkaa', array('errors' => $virheet, 'atribuutit' => $atribuutit));
         }
-        
     }
 
     public static function poista_muistutus($mid) {
         $muistutus = new Muistutus(array('mid' => $mid));
-        $muistutus->poistaMuistutus($mid, $_SESSION['kayttaja']);
-        
+        $muistutus->poistaMuistutus($mid);
+
         Redirect::to('/muistutuslista', array('viesti' => 'Poistettu onnistuneesti!'));
-        
+    }
+
+    public static function suorita_muistutus($mid) {
+        $muistutus = Muistutus::haeMuistutus($mid);
+        $muistutus->suoritaMuistutus($mid);
+
+        Redirect::to('/muistutuslista');
     }
 
 }

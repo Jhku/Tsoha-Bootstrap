@@ -7,7 +7,7 @@
 </div>
 
 <p>
-    <a href="{{base_path}}/muistutus/uusi" class="btn custom-button">Uusi muistutus</a>
+    {{macro.linkki_nappi("#{base_path}/muistutus/uusi", "Uusi muistutus")}}
 </p>
 
 <table class="table">
@@ -18,7 +18,6 @@
             <th>Info</th>
             <th>Valmis?</th>
             <th>Avaa</th>
-            <th>Muokkaa</th>
             <th>Poista</th>
         </tr>
     </thread>
@@ -30,19 +29,25 @@
             <td>{{muistutus.kategoria}}</td>
             <td>{{muistutus.info}}</td>
 
-            {% if muistutus.suoritettu %}
-            <td><label class="label label-success">Kyllä</td>
-            {% else %}
-            <td><label class="label label-danger">Ei</td>
+            {% if muistutus.suoritettu %}    
+            <td>
+                <form method="post" action="{{base_path}}/muistutus/{{muistutus.mid}}/suorita">
+                    <button type="submit" class="btn btn-success btn-sm">Suoritettu</button>
+                </form>
+            </td>
+            {% else %}            
+            <td>
+                <form method="post" action="{{base_path}}/muistutus/{{muistutus.mid}}/suorita">
+                    <button type="submit" class="btn btn-danger btn-sm">Kesken</button>
+                </form></td>
             {% endif %}
 
-            <!--LISÄÄ LINKIT JOHTAMAAN OIKEISIIN INDEXEIHIN -->
-            <th><a class="btn custom-button" href="{{base_path}}/muistutus/{{muistutus.mid}}">Avaa</a></th>
-            <th><a class="btn custom-button" href="{{base_path}}/muistutus/{{muistutus.mid}}/muokkaa">Muokkaa</a></th>
+
+            <td>{{macro.linkki_nappi("#{base_path}/muistutus/#{muistutus.mid}", "Avaa")}}</td>
 
             <td>
                 <form method="post" action="{{base_path}}/muistutus/{{muistutus.mid}}/poista">
-                    {{macro.poista_nappi()}}
+                    {{macro.submit_nappi("Poista")}}
                 </form>
             </td>
         </tr>

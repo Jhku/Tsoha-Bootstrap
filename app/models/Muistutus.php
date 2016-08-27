@@ -6,7 +6,9 @@ class Muistutus extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('tarkista_prioriteetti', 'tarkista_kategoria', 'tarkista_info', 'tarkista_muistutus');
+        
+        //Ei info tarkistusta. Saa olla tyhjä. Lisää halutessa.
+        $this->validators = array('tarkista_prioriteetti', 'tarkista_kategoria', 'tarkista_muistutus');
     }
 
     public static function kaikkiMuistutukset($kid) {
@@ -30,9 +32,9 @@ class Muistutus extends BaseModel {
         return $muistutukset;
     }
 
-    public static function haeMuistutus($mid, $kid) {
-        $kysely = DB::connection()->prepare('SELECT * FROM Muistutus WHERE mid = :mid AND kayttaja = :kid LIMIT 1');
-        $kysely->execute(array('mid' => $mid, 'kid' => $kid));
+    public static function haeMuistutus($mid) {
+        $kysely = DB::connection()->prepare('SELECT * FROM Muistutus WHERE mid = :mid LIMIT 1');
+        $kysely->execute(array('mid' => $mid));
 
         $tulos = $kysely->fetch();
         $muistutus = array();
@@ -64,15 +66,27 @@ class Muistutus extends BaseModel {
 
         $this->mid = $rivi['mid'];
     }
-    
-    public function poistaMuistutus($mid, $kid){
-        $kysely = DB::connection()->prepare('DELETE FROM Muistutus WHERE mid = :mid AND kayttaja = :kid');
-        $kysely->execute(array('mid' => $mid, 'kid' => $kid));
+
+    public function poistaMuistutus($mid) {
+        $kysely = DB::connection()->prepare('DELETE FROM Muistutus WHERE mid = :mid');
+        $kysely->execute(array('mid' => $mid));
+    }
+
+    public function muokkaaMuistutus($mid) {
+        $kysely = DB::connection()->prepare('UPDATE Muistutus SET kategoria = :kategoria, prioriteetti = :prioriteetti, info = :info, muistutus = :muistutus WHERE mid = :mid');
+        $kysely->execute(array('mid' => $mid, $this->kategoria, 'prioriteetti' => $this->prioriteetti, 'info' => $this->info, 'muistutus' => $this->muistutus));
     }
     
-    public function muokkaaMuistutus($mid, $kid){
-        $kysely = DB::connection()->prepare('UPDATE Muistutus SET kategoria = :kategoria, prioriteetti = :prioriteetti, info = :info, muistutus = :muistutus WHERE mid = :mid AND kayttaja = :kid');
-        $kysely->execute(array('kid' => $kid, 'mid' => $mid, $this->kategoria, 'prioriteetti' => $this->prioriteetti, 'info' => $this->info, 'muistutus' => $this->muistutus));
+    //Muuttaa atribuutin 'suoritettu' vastakkaiseksi boolean arvoksi
+    public function suoritaMuistutus($mid) {
+        $muistutus = Muistutus::haeMuistutus($mid);
+        
+        $kysely = DB::connection()->prepare('UPDATE Muistutus SET suoritettu = :negaatio WHERE mid = :mid');
+        $kysely->bindValue(':negaatio', !$muistutus->suoritettu, PDO::PARAM_BOOL);
+        $kysely->bindValue(':mid', $mid, PDO::PARAM_INT);
+        
+        $kysely->execute();
+
     }
 
     /// SYÖTTEEN TARKISTUS FUNKTIOT ///
@@ -87,10 +101,10 @@ class Muistutus extends BaseModel {
         return $errors;
     }
 
-    public function tarkista_info() {
-        $errors = parent::tarkista_string_pituus($this->info, 0, 35);
-        return $errors;
-    }
+    //public function tarkista_info() {
+    //    $errors = parent::tarkista_string_pituus($this->info, 0, 35);
+    //    return $errors;
+    //}
 
     public function tarkista_muistutus() {
         $errors = parent:: tarkista_string_pituus($this->muistutus, 3, 500);

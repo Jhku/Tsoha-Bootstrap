@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "macros/forms.html" as macro %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Kaverit</h1>
+</div>
+
+{% if viesti %}
+{{viesti}}
+{% endif %}
+
+<p></p>
+<ul>
+    {% for kaveri in kaverit %}
+    <li>{{kaveri.nimi}}</li>
+    {% endfor %}
+</ul>
+
+
+<form method="post" action="{{base_path}}/lisaakaveri">
+    {{macro.submit_nappi("Lisää kaveri")}}
+    {{macro.tekstirivi("kaveri")}}
+</form>
+<p></p>
+<form method="post" action="{{base_path}}/poistakaveri">
+    {{macro.submit_nappi("Poista kaveri")}}
+    {{macro.tekstirivi("kaveri")}}
+</form>
+
+{% endblock %}

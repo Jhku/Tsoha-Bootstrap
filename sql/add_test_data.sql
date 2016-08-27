@@ -1,6 +1,12 @@
 -- Lisää INSERT INTO lauseet tähän tiedostoon
-INSERT INTO Kayttaja (nimi, ssana) VALUES ('Eka', '123');
-INSERT INTO Muistutus (Kategoria, Prioriteetti, Info, Muistutus) VALUES ('Koulu', '5', 'Vko2 Harjotukset', 'Viimeistele vko 2 harjoitukset');
 
-INSERT INTO Kayttaja (nimi, ssana) VALUES ('Toka', '321');
-INSERT INTO Kayttaja (nimi, ssana) VALUES ('Kolmas', '445');
+
+INSERT INTO Kayttaja (nimi, ssana) VALUES ('admin', '123');
+INSERT INTO Kayttaja (nimi, ssana) VALUES ('kamu', '321');
+INSERT INTO Kayttaja (nimi, ssana) VALUES ('kamu2', '321');
+
+INSERT INTO Muistutus (kayttaja, kategoria, prioriteetti, info, muistutus) VALUES (1, 'testi', 3, 'testi', 'testi');
+INSERT INTO Muistutus (kayttaja, kategoria, prioriteetti, info, muistutus) VALUES (1, 'testi', 3, 'testi', 'testi');
+INSERT INTO Muistutus (kayttaja, kategoria, prioriteetti, info, muistutus) VALUES (1, 'testi', 3, 'testi', 'testi');
+
+INSERT INTO Kaverit (kayttaja1, kayttaja2) VALUES (1, 2);

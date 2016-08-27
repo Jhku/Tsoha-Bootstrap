@@ -14,12 +14,11 @@
         {% endfor %}
     </ul>
 </div>
-
 {% endif %}
-<form method="post" action="{{base_path}}/muistutus/{{atribuutit.mid}}/muokkaa">
 
-    <a href="{{base_path}}/muistutuslista" class="btn custom-button">Listaan</a>
-    {{macro.tallenna_nappi()}}
+<form method="post" action="{{base_path}}/muistutus/{{atribuutit.mid}}/muokkaa">
+    {{macro.linkki_nappi("#{base_path}/muistutus/#{atribuutit.mid}", "Muistutukseen")}}
+    {{macro.submit_nappi("Tallenna")}}
     <p></p>
 
     <div class="form group">
@@ -30,6 +29,7 @@
     {{macro.tekstirivi("#{'kategoria'}", "#{atribuutit.kategoria}", "#{'Kategoria'}")}}
     {{macro.tekstirivi("#{'info'}", "#{atribuutit.info}", "#{'Info'}")}}
     {{macro.tekstikentta("#{'muistutus'}", "#{atribuutit.muistutus}", "#{'Muistutus'}")}}
+
 </form>
 
 

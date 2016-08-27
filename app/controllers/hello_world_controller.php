@@ -9,21 +9,16 @@ class HelloWorldController extends BaseController {
 
     public static function sandbox() {
         // Testaa koodiasi täällä
-        $muistutus = new Muistutus(array(
-            'kategoria' => 'nullasd',
-            'muistutus' => '45912',
-            'prioriteetti' => 5
+        $linkki = new Linkki(array(
+            'teksti' => 'nullasd',
+            'osoite' => 'www.google.com'
         ));
 
-        $errors = $muistutus->errors();
+        $errors = $linkki->errors();
         $tyhja = array();
         
-        if(count($tyhja) == 0){
-            Kint::dump('Tyhjä lasketaan nollaksi');
-        }
-        
         if(count($errors) == 0){
-            Kint::dump('HOMMA TOIMII!');
+            Kint::dump('Ei virheitä');
         }
         Kint::dump($errors);
         Kint::dump($tyhja);

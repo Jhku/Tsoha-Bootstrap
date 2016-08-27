@@ -6,35 +6,67 @@
     <h1>Muistutus</h1>
 </div>
 
-
-<!-- MUOKKAA JA POISTA TOIMINNOT PUUTTUVAT -->
+{% if viesti %}
+{{viesti}}
+<p></p>
+{% endif %}
 
 <form method="post" action="{{base_path}}/muistutus/{{muistutus.mid}}/poista">
-    <a href="{{base_path}}/muistutuslista" class="btn custom-button">Listaan</a>
-    <a href="{{base_path}}/muistutus/{{muistutus.mid}}/muokkaa" class="btn custom-button">Muokkaa</a>
-    {{macro.poista_nappi()}}
+    {{macro.linkki_nappi("#{base_path}/muistutus/#{muistutus.mid}/muokkaa", "Muokkaa")}}
+
+    {% if not linkit %}
+    {{macro.linkki_nappi("#{base_path}/muistutus/#{muistutus.mid}/lisaalinkki", "Uusi linkki")}}
+    {% endif %}
+
+    {{macro.submit_nappi("Poista")}}
 </form>
 
 
 <p></p>
 <ul>
-    <li>{{muistutus.prioriteetti}}</li>
-    <li>{{muistutus.kategoria}}</li>
-    <li>{{muistutus.info}}</li>
+    <li><label>Prioriteetti: </label> {{muistutus.prioriteetti}}</li>
+    <li><label>Kategoria: </label> {{muistutus.kategoria}}</li>
+    <li><label>Info: </label> {{muistutus.info}}</li>
 
     {% if muistutus.suoritettu %}
-    <li>Valmis</li>
+    <li>Suoritettu</li>
     {% else %}
     <li>Kesken</li>
     {% endif %}
-
-
 </ul>
 
+<h3>Muistutus:</h3>
+<p class="lead">{{muistutus.muistutus}}</p>
+
+
+{% if linkit %}
+<h4>Linkit</h4>
+
 <p>
-    {{muistutus.muistutus}}
+    {{macro.linkki_nappi("#{base_path}/muistutus/#{muistutus.mid}/lisaalinkki", "Uusi linkki")}}
 </p>
 
-<!-- LISÄÄ LINKIT TÄNNE? -->
+<table class="table">
+    <thread>
+        <th>Info</th>
+        <th></th>
+    </thread>
+    <tbody>
+        {% for linkki in linkit %}
+        <tr>
+            <td><a href="http://{{linkki.osoite}}">{{linkki.teksti}}</a></td>
+            <td align="right">
+                <form method="post" action="{{base_path}}/muistutus/{{muistutus.mid}}/poistalinkki">
+                    <input name="lid" value="{{linkki.lid}}" type="hidden">
+                    <!-- <input name="mid" value="{{muistutus.mid}}" type="hidden"> -->
+                    {{macro.linkki_nappi("#{base_path}/muistutus/#{muistutus.mid}/linkki/#{linkki.lid}/muokkaa", "Muokkaa")}}
+                    {{macro.submit_nappi("Poista")}}
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
 
 {% endblock %}

@@ -31,10 +31,6 @@ class BaseModel {
     public static function tarkista_string_pituus($string, $vahintaan, $korkeintaan) {
         $errors = array();
 
-        if ($string == null || $string == '') {
-            $errors[] = 'Tyhjä syöte ei kelpaa';
-        }
-
         if (strlen($string) < $vahintaan || strlen($string) > $korkeintaan || !is_string($string)) {
             $errors[] = 'Syötteen minimi pituus on ' . ($vahintaan) . ' ja maksimi ' . $korkeintaan . ' kirjainta.';
         }
