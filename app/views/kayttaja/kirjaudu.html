@@ -10,6 +10,10 @@
 <p>{{error}}</p>
 {% endif %}
 
+{% if viesti %}
+<div class="lead"><font color="red">{{viesti}}</font></div>
+{% endif %}
+
 <form method="post" action="{{base_path}}/kirjaudu">
     <div>
         {{macro.linkki_nappi("#{base_path}/etusivu", "Etusivulle")}}

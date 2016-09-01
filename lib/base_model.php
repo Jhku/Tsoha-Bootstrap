@@ -32,7 +32,7 @@ class BaseModel {
         $errors = array();
 
         if (strlen($string) < $vahintaan || strlen($string) > $korkeintaan || !is_string($string)) {
-            $errors[] = 'Syötteen minimi pituus on ' . ($vahintaan) . ' ja maksimi ' . $korkeintaan . ' kirjainta.';
+            $errors[] = 'Syötteen minimi pituus on ' . $vahintaan . ' ja maksimi ' . $korkeintaan . ' kirjainta.';
         }
 
         return $errors;

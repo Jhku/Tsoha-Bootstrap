@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% import "macros/forms.html" as macro %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Lähetä käyttäjälle {{kaveri.nimi}}</h1>
+</div>
+
+<p></p>
+
+
+<table class="table">
+    <thread>
+        <tr>
+            <th>Kategoria</th>
+            <th>Info</th>
+            <th>Lähetä</th>
+        </tr>
+    </thread>
+
+    <tbody>
+        {% for muistutus in muistutukset %}
+        <tr> 
+            <td>{{muistutus.kategoria}}</td>
+            <td>{{muistutus.info}}</td>
+
+            <td>
+                <form method="post" action="{{base_path}}/lahetamuistutus/{{kaveri.nimi}}">
+                    <input name="kid" value="{{kaveri.kid}}" type="hidden">
+                    <input name="mid" value="{{muistutus.mid}}" type="hidden">
+                    {{macro.submit_nappi("Lähetä")}}
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -6,7 +6,7 @@ class Muistutus extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        
+
         //Ei info tarkistusta. Saa olla tyhjä. Lisää halutessa.
         $this->validators = array('tarkista_prioriteetti', 'tarkista_kategoria', 'tarkista_muistutus');
     }
@@ -60,8 +60,6 @@ class Muistutus extends BaseModel {
         $kysely = DB::connection()->prepare('INSERT INTO Muistutus (kayttaja, kategoria, prioriteetti, info, muistutus) VALUES (:kayttaja, :kategoria, :prioriteetti, :info, :muistutus) RETURNING mid');
         $kysely->execute(array('kayttaja' => $kid, 'kategoria' => $this->kategoria, 'prioriteetti' => $this->prioriteetti, 'info' => $this->info, 'muistutus' => $this->muistutus));
 
-        //lisää suoritettu boolean arvon lisäys kyselyyn toimivalla tavalla. Vai toteutus erillisenä painikkeena listassa?
-
         $rivi = $kysely->fetch();
 
         $this->mid = $rivi['mid'];
@@ -76,18 +74,18 @@ class Muistutus extends BaseModel {
         $kysely = DB::connection()->prepare('UPDATE Muistutus SET kategoria = :kategoria, prioriteetti = :prioriteetti, info = :info, muistutus = :muistutus WHERE mid = :mid');
         $kysely->execute(array('mid' => $mid, $this->kategoria, 'prioriteetti' => $this->prioriteetti, 'info' => $this->info, 'muistutus' => $this->muistutus));
     }
-    
-    //Muuttaa atribuutin 'suoritettu' vastakkaiseksi boolean arvoksi
+
+    //Vaikuttaa muistilista näkymään. Muuttaa atribuutin 'suoritettu' vastakkaiseksi boolean arvoksi.
     public function suoritaMuistutus($mid) {
         $muistutus = Muistutus::haeMuistutus($mid);
-        
+
         $kysely = DB::connection()->prepare('UPDATE Muistutus SET suoritettu = :negaatio WHERE mid = :mid');
         $kysely->bindValue(':negaatio', !$muistutus->suoritettu, PDO::PARAM_BOOL);
         $kysely->bindValue(':mid', $mid, PDO::PARAM_INT);
-        
-        $kysely->execute();
 
+        $kysely->execute();
     }
+
 
     /// SYÖTTEEN TARKISTUS FUNKTIOT ///
 
@@ -107,7 +105,7 @@ class Muistutus extends BaseModel {
     //}
 
     public function tarkista_muistutus() {
-        $errors = parent:: tarkista_string_pituus($this->muistutus, 3, 500);
+        $errors = parent::tarkista_string_pituus($this->muistutus, 3, 500);
         return $errors;
     }
 

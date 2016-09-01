@@ -10,22 +10,31 @@
 {{viesti}}
 {% endif %}
 
+{% if error %}
+<div class="lead"><font color="red">{{error}}</font></div>
+{% endif %}
+
 <p></p>
 <ul>
     {% for kaveri in kaverit %}
-    <li>{{kaveri.nimi}}</li>
+    <li>
+        <div class="lead">{{kaveri.nimi}} 
+        {{macro.linkki_nappi("#{base_path}/lahetamuistutus/#{kaveri.nimi}", "Lähetä muistutus")}}
+        </div>
+        <p></p>
+    </li>
     {% endfor %}
 </ul>
 
 
 <form method="post" action="{{base_path}}/lisaakaveri">
     {{macro.submit_nappi("Lisää kaveri")}}
-    {{macro.tekstirivi("kaveri")}}
+    {{macro.tekstirivi("kaveri", "#{lisattava}")}}
 </form>
 <p></p>
 <form method="post" action="{{base_path}}/poistakaveri">
     {{macro.submit_nappi("Poista kaveri")}}
-    {{macro.tekstirivi("kaveri")}}
+    {{macro.tekstirivi("kaveri", "#{poistettava}")}}
 </form>
 
 {% endblock %}

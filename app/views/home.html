@@ -6,21 +6,25 @@
     <h1>Muistilista</h1>
 </div>
 
-{% if user_logged_in %}
-<p>
-    {{macro.linkki_nappi("#{base_path}/muistutuslista", "Listaan")}}
-</p>
-{% else %}
-<p>
-    {{macro.linkki_nappi("#{base_path}/kirjaudu", "Kirjaudu")}}
-</p>
-{% endif %}
+{% if viesti %}
+<div class="lead"><font color="red">{{viesti}}</font></div>
+     {% endif %}
 
-<div>
-    Tervetuloa muistilista sovellukseen!
-</div>
+     {% if user_logged_in %}
+     <p>
+        {{macro.linkki_nappi("#{base_path}/muistutuslista", "Listaan")}}
+    </p>
+    {% else %}
+    <p>
+        {{macro.linkki_nappi("#{base_path}/kirjaudu", "Kirjaudu")}}
+    </p>
+    {% endif %}
 
-<div>
- <img src="https://media.giphy.com/media/FHCHRtwAZgGFq/giphy.gif" alt="HTML5 Icon" style="width:480px;height:475px;"> 
-</div>
-{% endblock %}
+    <div class="lead">
+        Tervetuloa muistilista sovellukseen!
+    </div>
+
+    <div>
+        <img src="https://media.giphy.com/media/FHCHRtwAZgGFq/giphy.gif" alt="HTML5 Icon" style="width:480px;height:475px;"> 
+    </div>
+    {% endblock %}

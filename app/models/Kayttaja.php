@@ -77,52 +77,15 @@ class Kayttaja extends BaseModel {
         $kysely->execute(array('nimi' => $nimi));
         $tulos = $kysely->fetch();
 
-        $kayttaja = new Kayttaja(array(
-            'kid' => $tulos['kid'],
-            'nimi' => $tulos['nimi'],
-            'ssana' => $tulos['ssana']
-        ));
-
-        return $kayttaja;
-    }
-
-    public static function haeKaverit($kid) {
-        $kysely = DB::connection()->prepare('SELECT * FROM Kaverit WHERE kayttaja1 = :kid OR kayttaja2 = :kid');
-        $kysely->execute(array('kid' => $kid));
-
-        $tulokset = $kysely->fetchAll();
-        $kaverit = array();
-
-        foreach ($tulokset as $tulos) {
-            if ($tulos['kayttaja1'] == $kid) {
-                $kaveri = self::haeKayttaja($tulos['kayttaja2']);
-                $kaverit[] = new Kayttaja(array(
-                    'kid' => $tulos['kayttaja2'],
-                    'nimi' => $kaveri->nimi
-                ));
-            } else {
-                $kaveri = self::haeKayttaja($tulos['kayttaja1']);
-                $kaverit[] = new Kayttaja(array(
-                    'kid' => $tulos['kayttaja1'],
-                    'nimi' => $kaveri->nimi
-                ));
-            }
+        if ($tulos) {
+            $kayttaja = new Kayttaja(array(
+                'kid' => $tulos['kid'],
+                'nimi' => $tulos['nimi'],
+                'ssana' => $tulos['ssana']
+            ));
+            return $kayttaja;
         }
-        return $kaverit;
-    }
-
-    public static function lisaaKaveri($kid, $kaverinimi) {
-        $kaveri = self::haeKayttajaNimella($kaverinimi);
-
-        $kysely = DB::connection()->prepare('INSERT INTO Kaverit (kayttaja1, kayttaja2) VALUES (:kid, :kaveri)');
-        $kysely->execute(array('kid' => $kid, 'kaveri' => $kaveri->kid));
-    }
-
-    public static function poistaKaveri($kid, $kaverinimi) {
-        $kaveri = self::haeKayttajaNimella($kaverinimi);
-
-        $kysely = DB::connection()->prepare('DELETE FROM Kaverit WHERE (kayttaja1 = :kid AND kayttaja2 = :kaveri) OR (kayttaja2 = :kid AND kayttaja1 = :kaveri)');
-        $kysely->execute(array('kid' => $kid, 'kaveri' => $kaveri->kid));
+        return null;
     }
 
     /// SYÖTTEEN TARKISTUS FUNKTIOT ///

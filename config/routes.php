@@ -12,7 +12,7 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
-function check_logged_in(){
+function check_logged_in() {
     BaseController::check_logged_in();
 }
 
@@ -62,17 +62,27 @@ $routes->post('/ulos', 'check_logged_in', function() {
     KayttajaKontrolleri::kirjaudu_ulos();
 });
 
+//KAVERI REITIT TÄSTÄ ALAS PÄIN!!!
 $routes->get('/kaverit', 'check_logged_in', function() {
-    KayttajaKontrolleri::kaverit_nakyma();
+    KaveriKontrolleri::kaverit_nakyma();
 });
 
 $routes->post('/lisaakaveri', 'check_logged_in', function() {
-    KayttajaKontrolleri::lisaa_kaveri();
+    KaveriKontrolleri::lisaa_kaveri();
 });
 
 $routes->post('/poistakaveri', 'check_logged_in', function() {
-    KayttajaKontrolleri::poista_kaveri();
+    KaveriKontrolleri::poista_kaveri();
 });
+
+$routes->get('/lahetamuistutus/:kaveri', 'check_logged_in', function($kaveri) {
+    KaveriKontrolleri::laheta_muistutus_nakyma($kaveri);
+});
+
+$routes->post('/lahetamuistutus/:kaveri', 'check_logged_in', function() {
+    KaveriKontrolleri::laheta_muistutus();
+});
+
 //LINKKI REITIT TÄSTÄ ALAS PÄIN!!!
 
 $routes->post('/muistutus/:mid/poistalinkki', 'check_logged_in', function() {
